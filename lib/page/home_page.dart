@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../app_style.dart';
 import '../size_config.dart';
@@ -42,10 +43,38 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(
                         height: SizeConfig.blockSizeVertical! * 0.5,
                       ),
-                      
+                      Row(
+                        children: [
+                          Text(
+                            'Jakarta',
+                            style: kRalewayMedium.copyWith(
+                              fontSize: SizeConfig.blockSizeHorizontal! * 5,
+                              color: kBlack,
+                            ),
+                          ),
+                          SizedBox(
+                            width: SizeConfig.blockSizeHorizontal! * 0.5,
+                          ),
+                          SvgPicture.asset('assets/icon_dropdown.svg')
+                        ],
+                      )
                     ],
-                  )
+                  ),
+                  SvgPicture.asset('assets/icon_notification.svg')
                 ],
+              ),
+            ),
+            const SizedBox(
+              height: kPadding24,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: kPadding20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField()
+                    )
+                    ],
               ),
             )
           ],
