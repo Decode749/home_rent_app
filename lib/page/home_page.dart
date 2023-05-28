@@ -67,12 +67,17 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: kPadding24,
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: kPadding20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: kPadding20),
               child: Row(
                 children: [
                   Expanded(
-                    child: TextField()
+                    child: TextField(
+                      style: kRalewayRegular.copyWith(
+                        color: kBlack,
+                        fontSize: SizeConfig.blockSizeHorizontal!*3,
+                      ),
+                    )
                     )
                     ],
               ),
