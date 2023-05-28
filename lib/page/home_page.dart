@@ -41,7 +41,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                       SizedBox(
                         height: SizeConfig.blockSizeVertical! * 0.5,
-                      )
+                      ),
+                      
                     ],
                   )
                 ],
