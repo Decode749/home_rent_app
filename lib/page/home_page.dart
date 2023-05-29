@@ -14,6 +14,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<String> catagories = ["House", "Apartment", "Villa", "Cottage", "Hotel"];
 
+  int current = 0;
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -72,35 +74,133 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 children: [
                   Expanded(
-                    child: TextField(
-                      style: kRalewayRegular.copyWith(
-                        color: kBlack,
-                        fontSize: SizeConfig.blockSizeHorizontal!*3,
+                      child: TextField(
+                    style: kRalewayRegular.copyWith(
+                      color: kBlack,
+                      fontSize: SizeConfig.blockSizeHorizontal! * 3,
+                    ),
+                    controller: TextEditingController(),
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: kPadding16,
                       ),
-                      controller: TextEditingController(),
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: kPadding16,
-                        ),
-                        prefixIcon: SvgPicture.asset('assets/icon_search.svg'),
-                        hintText: 'Search address , or address near you',
-                        border: kInputBorder,
-                        errorBorder: kInputBorder,
-                        disabledBorder: kInputBorder,
-                        focusedBorder: kInputBorder,
-                        enabledBorder: kInputBorder,
-                        hintStyle: kRalewayRegular.copyWith(
-                          color: kGrey85,
-                          fontSize: SizeConfig.blockSizeHorizontal!*3,
-                        ),
-                        filled: true,
-                        fillColor: kWhiteF7,
+                      prefixIcon: SvgPicture.asset('assets/icon_search.svg'),
+                      hintText: 'Search address , or address near you',
+                      border: kInputBorder,
+                      errorBorder: kInputBorder,
+                      disabledBorder: kInputBorder,
+                      focusedBorder: kInputBorder,
+                      enabledBorder: kInputBorder,
+                      hintStyle: kRalewayRegular.copyWith(
+                        color: kGrey85,
+                        fontSize: SizeConfig.blockSizeHorizontal! * 3,
                       ),
-                    )
-                    )
-                    ],
+                      filled: true,
+                      fillColor: kWhiteF7,
+                    ),
+                  )),
+                  SizedBox(
+                    width: SizeConfig.blockSizeHorizontal! * 4,
+                  ),
+                  Container(
+                    height: 49,
+                    width: 49,
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(kBorderRadius10),
+                      gradient: kLinearGradientBlue,
+                    ),
+                    child: SvgPicture.asset('assets/icon_filter.svg'),
+                  )
+                ],
               ),
-            )
+            ),
+            const SizedBox(
+              height: kPadding24,
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 34,
+              child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemCount: catagories.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        current = index;
+                      });
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        left: index == 0 ? kPadding20 : 12,
+                        right: index == catagories.length - 1 ? kPadding20 : 0,
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: kPadding16,
+                      ),
+                      height: 34,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            spreadRadius: 0,
+                            offset: const Offset(0, 18),
+                            blurRadius: 18,
+                            color: current == index
+                                ? kBlue.withOpacity(0.1)
+                                : kBlue.withOpacity(0),
+                          ),
+                        ],
+                        gradient: current == index
+                            ? kLinearGradientBlue
+                            : kLinearGradientWhite,
+                        borderRadius: BorderRadius.circular(kBorderRadius10),
+                      ),
+                      child: Center(
+                        child: Text(
+                          catagories[index],
+                          style: kRalewayMedium.copyWith(
+                            color: current == index ? kWhite : kGrey85,
+                            fontSize: SizeConfig.blockSizeHorizontal! * 2.5,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(
+              height: kPadding24,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: kPadding20,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Near from you',
+                    style: kRalewayMedium.copyWith(
+                      color: kBlack,
+                      fontSize: SizeConfig.blockSizeHorizontal! * 4,
+                    ),
+                  ),
+                  Text(
+                    'See more',
+                    style: kRalewayRegular.copyWith(
+                      color: kGrey85,
+                      fontSize: SizeConfig.blockSizeHorizontal! * 2.5,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: kPadding24,
+            ),
           ],
         ),
       )),
