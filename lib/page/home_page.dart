@@ -77,6 +77,25 @@ class _HomePageState extends State<HomePage> {
                         color: kBlack,
                         fontSize: SizeConfig.blockSizeHorizontal!*3,
                       ),
+                      controller: TextEditingController(),
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: kPadding16,
+                        ),
+                        prefixIcon: SvgPicture.asset('assets/icon_search.svg'),
+                        hintText: 'Search address , or address near you',
+                        border: kInputBorder,
+                        errorBorder: kInputBorder,
+                        disabledBorder: kInputBorder,
+                        focusedBorder: kInputBorder,
+                        enabledBorder: kInputBorder,
+                        hintStyle: kRalewayRegular.copyWith(
+                          color: kGrey85,
+                          fontSize: SizeConfig.blockSizeHorizontal!*3,
+                        ),
+                        filled: true,
+                        fillColor: kWhiteF7,
+                      ),
                     )
                     )
                     ],
