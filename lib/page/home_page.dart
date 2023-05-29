@@ -201,9 +201,56 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: kPadding24,
             ),
-          ],
-        ),
-      )),
+            SizedBox(
+              height: 272,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: (() => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ProductDetailPage(),
+                            ),
+                          )),
+                      child: Container(
+                        height: 272,
+                        width: 222,
+                        margin: EdgeInsets.only(
+                          left: kPadding20,
+                          right: index == 5 - 1 ? kPadding20 : 0,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(kBorderRadius20),
+                          boxShadow: [
+                            BoxShadow(
+                              spreadRadius: 0,
+                              offset: const Offset(0, 18),
+                              blurRadius: 18,
+                              color: kBlack.withOpacity(0.1),
+                            )
+                          ],
+                          image: const DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                                'https://images.pexels.com/photos/2581922/pexels-photo-2581922.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'),
+                          ),
+                        ),
+                        child: const Stack(
+                          children: [
+                            
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+                ),
+              ),
+            ],
+          ),
+        )
+      ),
     );
   }
 }
